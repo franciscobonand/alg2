@@ -1,5 +1,5 @@
 class CTrie:
-    def __init__(self, value='', text=None, has_data=False, numeric_value=None, parent=None):
+    def __init__(self, value='', has_data=False, numeric_value=None, parent=None):
         self.value = value
         self.has_data = has_data
         self.numeric_value = numeric_value
