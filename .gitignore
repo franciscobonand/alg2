@@ -1,2 +1,2 @@
-*.txt
 *.z78
+__pycache__

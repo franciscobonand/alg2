@@ -30,15 +30,23 @@ if __name__ == "__main__":
         print("Please insert a valid command")
         raise Exception("Commands should be like './main.py -(c/x) file.(txt/z78) [-o result_file_name]'")
 
+    f_name = ""
+
     if cli_input[1] == "-c":
-        txt_file = open(cli_input[2], "rb")
-        btext = txt_file.read()
-        txt_file.close()
-        bcompressed = z78comp.compress(btext)
-        z78comp.create_compressed_file(cli_input, bcompressed)
+        if len(cli_input) == 5 :
+            f_name = cli_input[4] + ".z78"
+        else :
+            f_name = cli_input[2].split(".")[0] + ".z78"
+
+        z78comp.compress(cli_input[2], f_name)
+        print("File ", cli_input[2], " compressed to ", f_name, " !")
+    
     elif cli_input[1] == "-x":
-        z78_file = open(cli_input[2], "rb")
-        compressed_file = z78_file.read()
-        z78_file.close()
-        btext = z78comp.uncompress(compressed_file)
-        z78comp.create_txt_file(cli_input, btext)
+        if len(cli_input) == 5 :
+            f_name = cli_input[4] + ".txt"
+        else :
+            f_name = cli_input[2].split(".")[0] + ".txt"
+
+        decoded_text = z78comp.decompress(cli_input[2])
+        z78comp.create_txt_file(f_name, decoded_text)
+        print("File ", cli_input[2], " decompressed to ", f_name, " !")
