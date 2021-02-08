@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import sys
-import compression as z78comp
+import compression as lz78comp
 
 def invalid_input(usr_input):
     valid_cmds = ["-x", "-c"]
-    valid_file_types = ["txt", "z78"]
+    valid_file_types = ["txt", "lz78"]
     file_type = usr_input[2].split(".")[1]
 
     if len(usr_input) != 3 and len(usr_input) != 5:
@@ -17,7 +17,7 @@ def invalid_input(usr_input):
 
     if usr_input[1] == "-c" and file_type != "txt":
         return True
-    elif usr_input[1] == "-x" and file_type != "z78":
+    elif usr_input[1] == "-x" and file_type != "lz78":
         return True
 
     if len(usr_input) == 5 and usr_input[3] != "-o":
@@ -28,17 +28,17 @@ if __name__ == "__main__":
 
     if invalid_input(cli_input):
         print("Please insert a valid command")
-        raise Exception("Commands should be like './main.py -(c/x) file.(txt/z78) [-o result_file_name]'")
+        raise Exception("Commands should be like './main.py -(c/x) file.(txt/lz78) [-o result_file_name]'")
 
     f_name = ""
 
     if cli_input[1] == "-c":
         if len(cli_input) == 5 :
-            f_name = cli_input[4] + ".z78"
+            f_name = cli_input[4] + ".lz78"
         else :
-            f_name = cli_input[2].split(".")[0] + ".z78"
+            f_name = cli_input[2].split(".")[0] + ".lz78"
 
-        z78comp.compress(cli_input[2], f_name)
+        lz78comp.compress(cli_input[2], f_name)
         print("File ", cli_input[2], " compressed to ", f_name, " !")
     
     elif cli_input[1] == "-x":
@@ -47,6 +47,6 @@ if __name__ == "__main__":
         else :
             f_name = cli_input[2].split(".")[0] + ".txt"
 
-        decoded_text = z78comp.decompress(cli_input[2])
-        z78comp.create_txt_file(f_name, decoded_text)
+        decoded_text = lz78comp.decompress(cli_input[2])
+        lz78comp.create_txt_file(f_name, decoded_text)
         print("File ", cli_input[2], " decompressed to ", f_name, " !")

@@ -56,17 +56,6 @@ def decompress(input_file_name):
     inpt_file.close()
     return decoded
 
-
-def create_compressed_file(file_cfg, bfile):
-    if len(file_cfg) == 5 :
-            z78_file = open(file_cfg[4]+".z78", "wb")
-    else :
-        f_name = file_cfg[2].split(".")[0]
-        z78_file = open(f_name+".z78", "wb")
-
-    z78_file.write(bfile)
-    z78_file.close()
-
 def create_txt_file(file_name, content):
     txt_file = open(file_name, "w")
     txt_file.write(content)

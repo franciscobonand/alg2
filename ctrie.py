@@ -24,7 +24,7 @@ class CTrie:
         if key == None:
             self.add_node(word, CTrie(has_data=True, numeric_value=value))
             
-            # turns current node into an internal node (which doesn't contain data besides it's children)
+            # "resets" root node
             if self.has_data and self.numeric_value != 0:
                 self.add_node('', CTrie(has_data=True, numeric_value=self.numeric_value))
                 self.has_data = False
