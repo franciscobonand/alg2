@@ -34,9 +34,9 @@ if __name__ == "__main__":
 
     if cli_input[1] == "-c":
         if len(cli_input) == 5 :
-            f_name = cli_input[4] + ".lz78"
+            f_name = cli_input[4] + ".z78"
         else :
-            f_name = cli_input[2].split(".")[0] + ".lz78"
+            f_name = cli_input[2].split(".")[0] + ".z78"
 
         lz78comp.compress(cli_input[2], f_name)
         print("File ", cli_input[2], " compressed to ", f_name, " !")
